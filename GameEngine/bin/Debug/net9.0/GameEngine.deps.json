@@ -1,0 +1,208 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "GameEngine/1.0.0": {
+        "dependencies": {
+          "FSharp.Core": "9.0.303",
+          "Fabulous": "2.4.1",
+          "Fabulous.XamarinForms": "2.4.2",
+          "Xamarin.Forms": "5.0.0.2662",
+          "Xamarin.Forms.Platform.WPF": "5.0.0.2662"
+        },
+        "runtime": {
+          "GameEngine.dll": {}
+        }
+      },
+      "Fabulous/2.4.1": {
+        "dependencies": {
+          "FSharp.Core": "9.0.303",
+          "System.Memory": "4.5.5"
+        },
+        "runtime": {
+          "lib/net7.0/Fabulous.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        }
+      },
+      "Fabulous.XamarinForms/2.4.2": {
+        "dependencies": {
+          "Fabulous": "2.4.1",
+          "Xamarin.Forms": "5.0.0.2662"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Fabulous.XamarinForms.dll": {
+            "assemblyVersion": "2.4.2.0",
+            "fileVersion": "2.4.2.0"
+          }
+        }
+      },
+      "FSharp.Core/9.0.303": {
+        "runtime": {
+          "lib/netstandard2.1/FSharp.Core.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.3.325.36101"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.1/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.1/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.1/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.1/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.1/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.1/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.1/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.1/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.1/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.1/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.1/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "OpenTK/3.0.1": {
+        "runtime": {
+          "lib/net20/OpenTK.dll": {
+            "assemblyVersion": "3.0.1.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
+      "OpenTK.GLControl/3.0.1": {
+        "dependencies": {
+          "OpenTK": "3.0.1"
+        },
+        "runtime": {
+          "lib/net20/OpenTK.GLControl.dll": {
+            "assemblyVersion": "3.0.1.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
+      "System.Memory/4.5.5": {},
+      "Xamarin.Forms/5.0.0.2662": {
+        "runtime": {
+          "lib/netstandard2.0/Xamarin.Forms.Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "5.0.0.1004"
+          },
+          "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "5.0.0.1004"
+          },
+          "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "5.0.0.1004"
+          }
+        }
+      },
+      "Xamarin.Forms.Platform.WPF/5.0.0.2662": {
+        "dependencies": {
+          "OpenTK": "3.0.1",
+          "OpenTK.GLControl": "3.0.1",
+          "Xamarin.Forms": "5.0.0.2662"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Xamarin.Forms.Platform.WPF.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "5.0.0.1004"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GameEngine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fabulous/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ip3LvpDujJ2no7QH7L/k+SzMEEdRFei/POhZMfW3y/LVcBd6/oEkRwmGHn1o8ClpR8plV9H3uKgdXVcMDxshtQ==",
+      "path": "fabulous/2.4.1",
+      "hashPath": "fabulous.2.4.1.nupkg.sha512"
+    },
+    "Fabulous.XamarinForms/2.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ukrKSlalMbNYfrHNdqLnmJlmLluK2WK4kSPG1UjXvsa+wvrTl9pw/tp2tepr+mqRcce3uTwyCbYTTZJQbPU1mw==",
+      "path": "fabulous.xamarinforms/2.4.2",
+      "hashPath": "fabulous.xamarinforms.2.4.2.nupkg.sha512"
+    },
+    "FSharp.Core/9.0.303": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6JlV8aD8qQvcmfoe/PMOxCHXc0uX4lR23u0fAyQtnVQxYULLoTZgwgZHSnRcuUHOvS3wULFWcwdnP1iwslH60g==",
+      "path": "fsharp.core/9.0.303",
+      "hashPath": "fsharp.core.9.0.303.nupkg.sha512"
+    },
+    "OpenTK/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X/jjhmvXvzzX+T4gTstdmeqMCcD51P+HD/cy1AZinFn1Rcu5KOrgQVZiD4Gm4pj2PjZ91dY8NEs2i9qjIDgJJA==",
+      "path": "opentk/3.0.1",
+      "hashPath": "opentk.3.0.1.nupkg.sha512"
+    },
+    "OpenTK.GLControl/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bDbxxCWkOvTJGaRlaKscZcP1cu1jDKbn+a6wMAsMzmGtrYZZbrVoc+SaMjSEOgavLEJQ8SHqLeXfZ0tlM1Jn4g==",
+      "path": "opentk.glcontrol/3.0.1",
+      "hashPath": "opentk.glcontrol.3.0.1.nupkg.sha512"
+    },
+    "System.Memory/4.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+      "path": "system.memory/4.5.5",
+      "hashPath": "system.memory.4.5.5.nupkg.sha512"
+    },
+    "Xamarin.Forms/5.0.0.2662": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SNQvq2tNJUl54KXfFrCx7SzfxDeJOUxQPaLxzLK8y/KFd6H9mwnhEu/W0Bejv79ogLYIy4r1ka2AHR+injTNow==",
+      "path": "xamarin.forms/5.0.0.2662",
+      "hashPath": "xamarin.forms.5.0.0.2662.nupkg.sha512"
+    },
+    "Xamarin.Forms.Platform.WPF/5.0.0.2662": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ccTe6WHRuDQ3DjLs3nyjD17nJ7I0uznX48FNCEQPgeMZ7KgBK98+/vE+enyKaT8+7acm+i9CywFyi+ZXcMNcHg==",
+      "path": "xamarin.forms.platform.wpf/5.0.0.2662",
+      "hashPath": "xamarin.forms.platform.wpf.5.0.0.2662.nupkg.sha512"
+    }
+  }
+}
