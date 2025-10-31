@@ -1,15 +1,11 @@
 module Example
 
 open Raylib_cs
+open Rectangle
+open Camera
+open Graphic
 
 let toBool (x: CBool) : bool = x = CBool.op_Implicit true
-
-type Rectangle =
-    { X: single
-      Y: single
-      W: int
-      H: int
-      Color: Color }
 
 let clamp (v: single) (lo: single) (hi: single) =
     if v < lo then lo elif v > hi then hi else v
@@ -48,12 +44,14 @@ let view (m: Rectangle) =
     Raylib.DrawText("ВОва лох", 10, 10, 20, Color.White)
     Raylib.EndDrawing()
 
-let rec loop (m: Rectangle) =
+let rec loop (m: Rectangle) (camera: Camera) (rects: Rectangle[]) =
     if toBool (Raylib.WindowShouldClose()) || toBool (Raylib.IsKeyPressed KeyboardKey.Escape) then
         ()
     else
         let dt = Raylib.GetFrameTime()
         let input = readInput()
         let m' = update dt input m
-        view m'
-        loop m'
+        let newCamera = followingCamera camera m' (dt/(single 100))
+        printfn "%A %A" newCamera m'
+        drawRectangles (Array.append rects [|m'|]) newCamera
+        loop m' newCamera rects

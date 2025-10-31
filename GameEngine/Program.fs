@@ -1,6 +1,9 @@
 ﻿module Program
 
+open Rectangle
+open Camera 
 open Graphic
+open Example
 open Raylib_cs
 
 let updateState (state: GameState) : GameState =
@@ -10,7 +13,7 @@ let rec gameLoop (state: GameState) =
     if toBool (Raylib.WindowShouldClose()) || toBool (Raylib.IsKeyPressed KeyboardKey.Escape) then
         ()
     else
-        drawRectangles state.Rectangles
+        //drawRectangles state.Rectangles
         let state' = updateState state
         gameLoop state'
 
@@ -43,7 +46,9 @@ let main _ =
         Up = false 
         Down = false
     }
-    gameLoop {Rectangles = [|rect1; rect2|]; Input = input}
+    let randomRects = generateRectangles 10 (single 5000) (single 5000) 10 1000
+        
+    loop rect1 {X=rect2.X; Y=rect2.Y; W=800; H=600; Speed=single 0; initialSpeed=single 0} randomRects
 
     Raylib.CloseWindow()
     0
