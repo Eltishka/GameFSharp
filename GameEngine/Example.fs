@@ -29,20 +29,11 @@ let update (dt: single) (input: Input) (rect: Rectangle) =
 
     let x' = rect.X + vx * dt
     let y' = rect.Y + vy * dt
-    let maxX = single (Raylib.GetScreenWidth()  - rect.W)
-    let maxY = single (Raylib.GetScreenHeight() - rect.H)
 
     { rect with
         X = x'
         Y = y' }
 
-// Отрисовка из модели
-let view (m: Rectangle) =
-    Raylib.BeginDrawing()
-    Raylib.ClearBackground(Color(38uy, 46uy, 56uy, 255uy)) // фон
-    Raylib.DrawRectangle(int m.X, int m.Y, m.W, m.H, m.Color)
-    Raylib.DrawText("ВОва лох", 10, 10, 20, Color.White)
-    Raylib.EndDrawing()
 
 let rec loop (m: Rectangle) (camera: Camera) (rects: Rectangle[]) =
     if toBool (Raylib.WindowShouldClose()) || toBool (Raylib.IsKeyPressed KeyboardKey.Escape) then

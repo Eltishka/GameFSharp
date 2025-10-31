@@ -40,12 +40,6 @@ let main _ =
         Color = Color(10uy, 129uy, 176uy, 255uy) 
     }
 
-    let input = { 
-        Left = false
-        Right = false 
-        Up = false 
-        Down = false
-    }
     let randomRects = generateRectangles 10 (single 5000) (single 5000) 10 1000
         
     loop rect1 {X=rect2.X; Y=rect2.Y; W=800; H=600; Speed=single 0; initialSpeed=single 0} randomRects
