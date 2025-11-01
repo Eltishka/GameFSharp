@@ -17,7 +17,6 @@ let rec gameLoop (state: GameState) =
         let state' = updateState state
         gameLoop state'
 
-
 [<EntryPoint>]
 let main _ =
     Raylib.InitWindow (800, 600, "Сосать Америка")

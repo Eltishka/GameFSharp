@@ -19,11 +19,15 @@ type GameState = {
 }
 
 
-let isVisible (rectangle: Rectangle) (camera: Camera) =
-    false //TODO
+let isVisible (rectangle: Rectangle) (camera: Camera) (inCameraX: int) (inCameraY: int) =
+    0 <= inCameraX + rectangle.W && inCameraX - rectangle.W <= camera.W && 0 <= inCameraY + rectangle.H && inCameraY - rectangle.H <= camera.H
 let drawRectangles (rectangles: Rectangle[]) (camera: Camera) =
     let drawOneRectangle (rectangle: Rectangle) =
-        Raylib.DrawRectangle (int (rectangle.X - camera.X) + (camera.W / 2 - rectangle.W / 2), int (rectangle.Y - camera.Y) + (camera.H / 2 - rectangle.H /2), rectangle.W, rectangle.H, rectangle.Color)
+        let inCameraX = int (rectangle.X - camera.X) + (camera.W / 2 - rectangle.W / 2)
+        let inCameraY = int (rectangle.Y - camera.Y) + (camera.H / 2 - rectangle.H /2)
+        if isVisible rectangle camera inCameraX inCameraY
+            then Raylib.DrawRectangle (inCameraX, inCameraY, rectangle.W, rectangle.H, rectangle.Color)
+    
     let rec loop (i: int) =
         if i >= rectangles.Length 
             then ()
