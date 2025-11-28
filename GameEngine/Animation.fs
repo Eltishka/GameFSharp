@@ -52,6 +52,13 @@ type GraphicObject =
 let private toRaylibColor (color: Color) = 
     Color(color.R, color.G, color.B, color.Alpha)
 
+
+let isVisible (graphicObject: GraphicObject) (camera: Camera) =
+    let { X = objectX; Y = objectY } = getPointOfGraphicObject graphicObject
+    let inCameraX = int (objectX - camera.X) + (camera.W / 2 - objectWidth / 2)
+    let inCameraY = int (objectY - camera.Y) + (camera.H / 2 - objectHeigth / 2)
+    0 <= inCameraX + objectWidth && inCameraX - objectWidth <= camera.W && 0 <= inCameraY + objectHeigth && inCameraY - objectHeigth <= camera.H
+
 let addPoint (point1: Point) (point2: Point) =
     { X = point1.X + point2.X; Y = point1.Y + point2.Y }
 
@@ -102,6 +109,10 @@ let rec drawGraphicObject (graphicObject: GraphicObject) =
                     |> Array.map (fun obj -> addPointToGraphicObjectPoint obj scope.Point) 
                     |> Array.iter drawGraphicObject
 
+let drawOnlyVisibleGraphicObject(graphicObject: GraphicObject) (camera: Camera) = 
+    if isVisible graphicObject camera then
+        draw
+
 
 let createMask (object: GraphicObject) (colorCalculator: Point -> Color) =
     let width, height = getSizesOfGraphicObject object
@@ -137,13 +148,6 @@ let updateAnimation (animation: Animation) =
             { animation with FrameCounter = newCounter }
     else
         animation
-
-
-let isVisible (graphicObject: GraphicObject) (camera: Camera) =
-    let { X = objectX; Y = objectY } = getPointOfGraphicObject graphicObject
-    let inCameraX = int (objectX - camera.X) + (camera.W / 2 - objectWidth / 2)
-    let inCameraY = int (objectY - camera.Y) + (camera.H / 2 - objectHeigth / 2)
-    0 <= inCameraX + objectWidth && inCameraX - objectWidth <= camera.W && 0 <= inCameraY + objectHeigth && inCameraY - objectHeigth <= camera.H
 
 let drawRectangles (rectangles: Rectangle[]) (camera: Camera) =
     let drawOneRectangle (rectangle: Rectangle) =
