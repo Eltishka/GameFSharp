@@ -1,10 +1,22 @@
-﻿module Program
+module Animation
 open Raylib_cs
+open Rectangle
+open System.Collections.Generic
 open System.Numerics
+open System.IO
 
 type Point = {
     X: int
     Y: int
+}
+
+type Camera = {
+    X: single
+    Y: single
+    W: int 
+    H: int
+    Speed: single
+    initialSpeed: single
 }
 
 type Color = {
@@ -31,18 +43,13 @@ type DrawableObject = {
     CurrentAnimationName: string
 }
 
-type RelativeDrawableObject = {
-    RelatePoint: Point
-    Object: DrawableObject
-}
-
 type GraphicObject =
 | DrawableObject of DrawableObject
 | RelativeDrawableObject of {|Object: GraphicObject; RelatePoint: Point|}
 | MaskedGraphicObject of {|Object: GraphicObject; Mask: Texture2D|}
 | Scope of {|Objects: GraphicObject[]; Point: Point; W: int; H: int|}
 
-let toRaylibColor (color: Color) = 
+let private toRaylibColor (color: Color) = 
     Color(color.R, color.G, color.B, color.Alpha)
 
 let addPoint (point1: Point) (point2: Point) =
@@ -107,6 +114,7 @@ let createMask (object: GraphicObject) (colorCalculator: Point -> Color) =
             Raylib.ImageDrawPixel(&image, x, y, color)
     
     Raylib.LoadTextureFromImage image
+
 let loadAnimation (framePaths: string[]) frameSpeed =
     let frames = framePaths |> Array.map Raylib.LoadTexture
     {
@@ -117,7 +125,7 @@ let loadAnimation (framePaths: string[]) frameSpeed =
         FrameSpeed = frameSpeed
     }
 
-let updateAnimation animation =
+let updateAnimation (animation: Animation) =
     if animation.Frames.Length > 1 then
         let newCounter = animation.FrameCounter + 1
         if newCounter >= animation.FrameSpeed then
@@ -131,40 +139,27 @@ let updateAnimation animation =
         animation
 
 
+let isVisible (graphicObject: GraphicObject) (camera: Camera) =
+    let { X = objectX; Y = objectY } = getPointOfGraphicObject graphicObject
+    let inCameraX = int (objectX - camera.X) + (camera.W / 2 - objectWidth / 2)
+    let inCameraY = int (objectY - camera.Y) + (camera.H / 2 - objectHeigth / 2)
+    0 <= inCameraX + objectWidth && inCameraX - objectWidth <= camera.W && 0 <= inCameraY + objectHeigth && inCameraY - objectHeigth <= camera.H
 
-[<EntryPoint>]
-let main argv =
-    Raylib.InitWindow(800, 600, "F# Sprite Animation")
-    Raylib.SetTargetFPS(60)
-    
-    // Загрузка анимации (замените пути на реальные файлы)
-    let animation = 
-        [| "resources/2.jpg"; |]
-        |> fun frames -> loadAnimation frames 10
-    
-    let map = Map.add "Attack" animation Map.empty
-    let mutable sprite = {
-        X = float32 (System.Math.IEEERemainder(Raylib.GetTime(), 800.0))
-        Y = float32 (System.Math.IEEERemainder(Raylib.GetTime(), 600.0))
-        W = 400
-        H = 300
-        Animations = map
-        Color = Color.White
-        CurrentAnimationName = "Attack"
-    }
-    while not (Raylib.WindowShouldClose()) do
-        // Обновление
-        let updatedAnimation = updateAnimation sprite.Animations.[sprite.CurrentAnimationName]
-
-        Raylib.BeginDrawing()
-        Raylib.ClearBackground Color.White
+let drawRectangles (rectangles: Rectangle[]) (camera: Camera) =
+    let drawOneRectangle (rectangle: Rectangle) =
         
-        drawGraphicObject sprite
-        Raylib.DrawText("Sprite Animation Demo", 10, 10, 20, Color.Black)
-        
-        Raylib.EndDrawing()
+        if isVisible rectangle camera 
+            then Raylib.DrawRectangle (inCameraX, inCameraY, rectangle.W, rectangle.H, rectangle.Color)
     
-    // Очистка
-    //sprite.Animations.toArray |> Array.forall(fun el ->) |> Array.iter Raylib.UnloadTexture
-    Raylib.CloseWindow()
-    0
+    let rec loop (i: int) =
+        if i >= rectangles.Length 
+            then ()
+        else 
+            drawOneRectangle rectangles.[i]
+            loop (i + 1)
+    
+    Raylib.BeginDrawing()
+    Raylib.ClearBackground(Color(38uy, 46uy, 56uy, 255uy)) 
+    loop 0
+    Raylib.DrawText("ВОва лох", 10, 10, 20, Color.White)
+    Raylib.EndDrawing()
