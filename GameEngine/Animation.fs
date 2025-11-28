@@ -111,7 +111,7 @@ let rec drawGraphicObject (graphicObject: GraphicObject) =
 
 let drawOnlyVisibleGraphicObject(graphicObject: GraphicObject) (camera: Camera) = 
     if isVisible graphicObject camera then
-        draw
+        
 
 
 let createMask (object: GraphicObject) (colorCalculator: Point -> Color) =
